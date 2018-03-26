@@ -6,7 +6,7 @@ The goal of this project is to design a path planner and trajectory generator fu
 The trajectory constraints are maximum speed, acceleration, and jerk. The path constraints are the highway lanes and the presence of other cars.
 Sensor fusion data is used to detect and predict the current and future positions of other vehicles.
 
-![My own LEGO AGV](screenshot.jpg)
+![Simulator](screenshot.jpg)
 
 ## Implementation ##
 
@@ -48,7 +48,7 @@ We then do the same for the left and right adjacent lanes, with a safety margin 
 		left_free = false; //left lane is occupied!
 	}
 
-![My own LEGO AGV](left_pass2.jpg)
+![Right Pass](left_pass2.jpg)
 
 **Main control logic**
 
@@ -83,7 +83,7 @@ Now we have a target point ahead of us, with a given speed and a given lane. The
 
 Four control points are required to describe such a curve. The starting direction will be tangential to the segment defined by the first two points, while the ending direction will be tangential to the segment defined by the last two points. The curve passes through the first and last point, not the two middle control points:
 
-![My own LEGO AGV](cubicBezier.png)
+![Cubic Bezier](cubicBezier.png)
  
 The equation of the curve is:
 
@@ -163,4 +163,4 @@ The car is able to run on the highway as required, without violating the defined
 
 Note that the Bezier curve smooths the path between current and target point, but does not guarantee a trajectory within dynamic limits. However, by choosing a target point far away in time (30 meters at a maximum speed of 20m/s) we can easily make sure that acceleration and jerk constraints are not violated.
 
-![My own LEGO AGV](right_pass.jpg)
+![Right Pass](right_pass.jpg)
